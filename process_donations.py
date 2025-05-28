@@ -98,6 +98,7 @@ def parse_donation(msg: Message) -> Optional[Dict[str, str]]:
     # if "חיוב" not in subject:
     #     return None
     subject = msg.get("Subject", "")
+
     body = _get_body(msg)
     name_match = re.search(r"בוצע\s+חיוב\s+עבור\s+([^\s]+)(?:\s|ב-)", body)
     amount_match = re.search(r"([\d,.]+)\s*₪", body)
