@@ -93,9 +93,12 @@ def parse_donation(msg: Message) -> Optional[Dict[str, str]]:
     sender = msg.get("From", "")
     if not re.search(r"support@sumit\.co\.il", sender, re.I):
         return None
+    # Filter messages by subject was disabled
+    # subject = msg.get("Subject", "")
+    # if "חיוב" not in subject:
+    #     return None
     subject = msg.get("Subject", "")
-    if "חיוב" not in subject:
-        return None
+
     body = _get_body(msg)
     name_match = re.search(r"בוצע\s+חיוב\s+עבור\s+([^\s]+)(?:\s|ב-)", body)
     amount_match = re.search(r"([\d,.]+)\s*₪", body)
